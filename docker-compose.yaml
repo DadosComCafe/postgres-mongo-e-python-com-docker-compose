@@ -23,6 +23,16 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: mongo
       MONGO_INITDB_ROOT_PASSWORD: senha
+  
+  jupyter:
+    build: .
+    ports:
+      - "8888:8888"
+    volumes:
+      - ./notebooks:/app/notebooks
+    environment:
+      - JUPYTER_TOKEN=seu_token_aqui
+    command: jupyter notebook --ip=0.0.0.0 --port=8888 --no-browser --allow-root --notebook-dir=/app/notebooks
 
 volumes:
   postgres_volume:
